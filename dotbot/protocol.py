@@ -245,15 +245,13 @@ class PayloadLh2RawLocation(Payload):
 
     metadata: list[PayloadFieldMetadata] = dataclasses.field(
         default_factory=lambda: [
-            PayloadFieldMetadata(name="bits", length=8),
-            PayloadFieldMetadata(name="polynomial_index", disp="poly", length=1),
-            PayloadFieldMetadata(name="offset", disp="off.", length=1, signed=True),
+            PayloadFieldMetadata(name="counts_0", disp="counts 0", length=4),
+            PayloadFieldMetadata(name="counts_1", disp="counts 1", length=4),
         ]
     )
 
-    bits: int = 0x0000000000000000
-    polynomial_index: int = 0x00
-    offset: int = 0x00
+    counts_0: int = 0x00000000
+    counts_1: int = 0x00000000
 
 
 @dataclass
@@ -262,12 +260,10 @@ class PayloadLh2RawData(Payload):
 
     metadata: list[PayloadFieldMetadata] = dataclasses.field(
         default_factory=lambda: [
-            PayloadFieldMetadata(name="count", disp="len"),
-            PayloadFieldMetadata(name="locations", type_=list, length=0),
+            PayloadFieldMetadata(name="locations", type_=list, length=4),
         ]
     )
 
-    count: int = 0
     locations: list[PayloadLh2RawLocation] = dataclasses.field(
         default_factory=lambda: []
     )

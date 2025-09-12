@@ -598,19 +598,17 @@ class Controller:
             )
 
         if frame.packet.payload_type == PayloadType.LH2_RAW_DATA:
-            self.lh2_manager.last_raw_data = frame.packet.payload
-            self.logger.debug(
+            # self.lh2_manager.last_raw_data = frame.packet.payload
+            self.logger.info(
                 "Received LH2 Raw Data",
-                location_1_bits=self.lh2_manager.last_raw_data.locations[0].bits,
-                location_1_index=self.lh2_manager.last_raw_data.locations[
-                    0
-                ].polynomial_index,
-                location_1_offset=self.lh2_manager.last_raw_data.locations[0].offset,
-                location_2_bits=self.lh2_manager.last_raw_data.locations[1].bits,
-                location_2_index=self.lh2_manager.last_raw_data.locations[
-                    1
-                ].polynomial_index,
-                location_2_offset=self.lh2_manager.last_raw_data.locations[1].offset,
+                bs0_counts1=frame.packet.payload.counts_0,
+                bs0_counts2=frame.packet.payload.counts_1,
+                bs1_counts1=frame.packet.payload.counts_0,
+                bs1_counts2=frame.packet.payload.counts_1,
+                bs2_counts1=frame.packet.payload.counts_0,
+                bs2_counts2=frame.packet.payload.counts_1,
+                bs3_counts1=frame.packet.payload.counts_0,
+                bs3_counts2=frame.packet.payload.counts_1,
             )
 
         if frame.packet.payload_type == PayloadType.LH2_PROCESSED_DATA:
