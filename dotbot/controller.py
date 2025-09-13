@@ -550,18 +550,18 @@ class Controller:
             dotbot.application = ApplicationType(frame.packet.payload.application)
             dotbot.calibrated = bool(frame.packet.payload.calibrated)
             self.dotbots.update({dotbot.address: dotbot})
-            logger.debug("Advertisement received")
-            # Send calibration to dotbot if it's not calibrated and the localization system has calibration
-            if (
-                dotbot.calibrated is False
-                and self.lh2_manager.state == LighthouseManagerState.Calibrated
-            ):
-                # Send calibration to new dotbot if the localization system is calibrated
-                self.logger.info(
-                    "Send calibration data", payload=self.lh2_manager.calibration
-                )
-                self.dotbots.update({dotbot.address: dotbot})
-                self.send_payload(int(source, 16), payload=self.lh2_manager.calibration)
+            # logger.debug("Advertisement received")
+            # # Send calibration to dotbot if it's not calibrated and the localization system has calibration
+            # if (
+            #     dotbot.calibrated is False
+            #     and self.lh2_manager.state == LighthouseManagerState.Calibrated
+            # ):
+            #     # Send calibration to new dotbot if the localization system is calibrated
+            #     self.logger.info(
+            #         "Send calibration data", payload=self.lh2_manager.calibration
+            #     )
+            #     self.dotbots.update({dotbot.address: dotbot})
+            #     self.send_payload(int(source, 16), payload=self.lh2_manager.calibration)
 
         if (
             frame.packet.payload_type
